@@ -1,4 +1,3 @@
-package com.revature.Week1.Day1;
 
 import java.util.*;
 
@@ -287,5 +286,3 @@ class ExerciseList
 
     public void exerciseNum(int a) { System.out.println("\nExercise " + a);}
 }
-
-

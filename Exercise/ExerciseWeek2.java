@@ -1,5 +1,3 @@
-package com.revature.Week2.Day2;
-
 import java.io.*;
 import java.util.*;
 
