@@ -46,10 +46,7 @@ public class Main {
                 case 3: //delete
                     System.out.print("Enter the employee's ID to delete: ");
                     int id = getNumber();
-                    if(id > 0)
-                        dao.deleteEmployee(id);
-                    else
-                        System.out.println("Please enter a valid ID!");
+                    dao.deleteEmployee(id);System.out.println("Please enter a valid ID!");
                     break;
                 case 4:
                     List<Employee> employees = dao.getEmployees();
@@ -82,4 +79,3 @@ public class Main {
         return num;
     }
 }
-
