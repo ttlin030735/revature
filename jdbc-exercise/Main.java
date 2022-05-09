@@ -60,6 +60,7 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Thank you! Now exiting...");
+                    ConnectionFactory.getConnection().close();
                     flag = false;
                     break;
                 default:
