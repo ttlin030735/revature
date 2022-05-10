@@ -46,7 +46,7 @@ public class Main {
                 case 3: //delete
                     System.out.print("Enter the employee's ID to delete: ");
                     int id = getNumber();
-                    dao.deleteEmployee(id);System.out.println("Please enter a valid ID!");
+                    dao.deleteEmployee(id);
                     break;
                 case 4:
                     List<Employee> employees = dao.getEmployees();
@@ -56,12 +56,12 @@ public class Main {
                     System.out.print("Enter ID: ");
                     employee = dao.getEmployeeById(getNumber());
                     if(employee.getName() == null) System.out.println("ID not found");
-                    else System.out.println("ID: " + employee.getId() + ", Name: " + employee.getName() + ", Email: " + employee.getEmail());
+                    else System.out.println(employee.toString());
                     break;
                 case 6:
                     System.out.println("Thank you! Now exiting...");
-                    ConnectionFactory.getConnection().close();
                     flag = false;
+                    ConnectionFactory.getConnection().close();
                     break;
                 default:
                     System.out.println("Choose number between 1-6!!!");
@@ -80,3 +80,4 @@ public class Main {
         return num;
     }
 }
+

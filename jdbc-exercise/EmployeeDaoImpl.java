@@ -1,8 +1,5 @@
 package com.revature;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
-
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +29,8 @@ public class EmployeeDaoImpl implements EmployeeDao{
         preparedStatement.setString(1, employee.getName());
         preparedStatement.setString(2, employee.getEmail());
         preparedStatement.setInt(3, employee.getId());
-        int count = preparedStatement.executeUpdate();
-        if (count > 0) System.out.println("Employee updated");
-        else System.out.println("Error have occured please try again!");
+        if (preparedStatement.executeUpdate() > 0) System.out.println("Employee updated");
+        else System.out.println("Error have occurred please try again!");
     }
 
     @Override
@@ -57,8 +53,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             String email = resultSet.getString(3);
-            Employee employee = new Employee(id, name, email);
-            employees.add(employee);
+            employees.add(new Employee(id, name, email));
         }
         return employees;
     }
@@ -67,15 +62,11 @@ public class EmployeeDaoImpl implements EmployeeDao{
     public Employee getEmployeeById(int id) throws SQLException {
         Employee employee = new Employee();
         employee.setId(id);
-        String sql = "SELECT * FROM employee";
+        String sql = "SELECT * FROM employee WHERE ID = " + id;
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        while(resultSet.next()){
-            if(id == resultSet.getInt(1)){
-                employee.setName(resultSet.getString(2));
-                employee.setEmail(resultSet.getString(3));
-            }
-        }
+        if(resultSet.next()) return(new Employee(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3)));
         return employee;
     }
+
 }
